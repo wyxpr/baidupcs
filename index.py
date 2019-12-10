@@ -12,6 +12,8 @@ import urllib.error
 # 设置超时
 import time
 
+keyword = input("请输入搜索词:")
+
 timeout = 5
 socket.setdefaulttimeout(timeout)
 
@@ -75,12 +77,12 @@ class Crawler:
                 print("产生未知错误，放弃保存")
                 continue
             else:
-                print("表情包+1,已有" + str(self.__counter) + "张表情包")
+                print("图片+1,已有" + str(self.__counter) + "张图片")
                 self.__counter += 1
         return
 
     # 开始获取
-    def get_images(self, word='表情包'):
+    def get_images(self, word=keyword):
         search = urllib.parse.quote(word)
         # pn int 图片数
         pn = self.__start_amount
@@ -131,4 +133,6 @@ class Crawler:
 if __name__ == '__main__':
     crawler = Crawler(0.05)  # 抓取延迟为 0.05
 
-    crawler.start('表情包', 10, 1) 
+    crawler.start(keyword, 10, 1)
+
+    
